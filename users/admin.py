@@ -4,7 +4,7 @@ from . import models
 
 # Register your models here.
 @admin.register(models.User)
-class UserAdmin(UserAdmin):
+class CustomUserAdmin(UserAdmin):
 
     """ Custom  User Admin """
 
