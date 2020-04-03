@@ -35,7 +35,7 @@ class RoomAdmin(admin.ModelAdmin):
             },
         ),
         ("Times", {"fields": ("check_in", "check_out", "instant_book",)}),
-        ("Spaces", {"fields": ("guests", "beds", "bderooms", "baths",)}),
+        ("Spaces", {"fields": ("guests", "beds", "bedrooms", "baths",)}),
         (
             "More about the Space",
             {"fields": ("amenities", "facilities", "house_rules",)},
@@ -50,13 +50,14 @@ class RoomAdmin(admin.ModelAdmin):
         "price",
         "guests",
         "beds",
-        "bderooms",
+        "bedrooms",
         "baths",
         "check_in",
         "check_out",
         "instant_book",
         "count_amenities",
         "count_photos",
+        "total_rating",
     )
 
     list_filter = (

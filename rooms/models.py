@@ -74,7 +74,7 @@ class Room(core_models.TimeStampModel):
     address = models.CharField(max_length=140)
     guests = models.IntegerField()
     beds = models.IntegerField()
-    bderooms = models.IntegerField()
+    bedrooms = models.IntegerField()
     baths = models.IntegerField()
     check_in = models.TimeField()
     check_out = models.TimeField()
@@ -91,3 +91,10 @@ class Room(core_models.TimeStampModel):
 
     def __str__(self):
         return self.name
+
+    def total_rating(self):
+        all_reviews = self.reviews.all()
+        all_ratings = 0
+        for review in all_reviews:
+            all_ratings += review.rating_avg()
+        return all_ratings / len(all_reviews)
