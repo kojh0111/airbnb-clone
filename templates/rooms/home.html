@@ -12,11 +12,11 @@
     {% endfor %}
 
     <h5>
-    {% if page is not 1 %}
+    {% if page > 1 %}
         <a href="?page={{page|add:-1}}">←</a>
     {% endif %}
         Page {{page}}
-    {% if not page ==  page_count %}
+    {% if page <  page_count %}
         <a href="?page={{page|add:1}}">→</a>
     {% endif %}
          of {{page_count}}
