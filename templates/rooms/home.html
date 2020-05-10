@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block page_name %}
+    Rooms
+{% endblock %}
+
+{% block content %}
+
+    {% for room in rooms %}
+        <h1>{{room.name}} / ${{room.price}}</h1>
+    {% endfor %}
+
+    <h5>
+    {% if page is not 1 %}
+        <a href="?page={{page|add:-1}}">←</a>
+    {% endif %}
+        Page {{page}}
+    {% if not page ==  page_count %}
+        <a href="?page={{page|add:1}}">→</a>
+    {% endif %}
+         of {{page_count}}
+    </h5>
+
+    {% for page in page_range  %}
+        <a href="?page={{page}}">{{page}}</a>
+    {% endfor %}
+
+{% endblock %}
