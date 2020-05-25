@@ -7,7 +7,10 @@
   </head>
 
   <body>
+    {% include "partials/header.html" %}
+    
     {% block content %}{% endblock %}
-    &copy; Nbnb
+
+    {% include "partials/footer.html" %}
   </body>
 </html>
