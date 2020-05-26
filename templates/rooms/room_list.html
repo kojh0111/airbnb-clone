@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 
-{% block page_name %}
+{% block page_title %}
     Home
-{% endblock %}
+{% endblock page_title %}
 
 {% block content %}
 
@@ -30,4 +30,4 @@
         <a href="?page={{page}}">{{page}}</a>
     {% endfor %}
 
-{% endblock %}
+{% endblock content %}
