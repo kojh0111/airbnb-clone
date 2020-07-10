@@ -1,6 +1,6 @@
 import os
 import requests
-from django.views.generic import FormView
+from django.views.generic import FormView, DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
 from django.contrib.auth import authenticate, login, logout
@@ -66,6 +66,11 @@ def github_login(request):
     return redirect(
         f"https://github.com/login/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&scope=read:user"
     )
+
+
+class UserProfileView(DetailView):
+    model = models.User
+    context_object_name = "user_obj"
 
 
 class GithubException(Exception):
