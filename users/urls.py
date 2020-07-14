@@ -16,4 +16,5 @@ urlpatterns = [
         "verify/<str:key>/", views.complete_verification, name="complete_verification"
     ),
     path("update-profile/", views.ProfileUpdateView.as_view(), name="update"),
+    path("update-password/", views.UpdatePasswordView.as_view(), name="password"),
 ]
