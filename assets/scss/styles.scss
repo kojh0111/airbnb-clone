@@ -91,7 +91,18 @@ form {
 }
 
 .border-section {
-  @apply border-b border-gray-400 pb-8 mt-8;
+  @apply border-b pb-8 mt-8 border-gray-400;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 10px;
+  justify-items: center;
+}
+
+.cal-number {
+  @apply w-full text-center rounded p-1 cursor-pointer;
 }
 
 @tailwind utilities;
