@@ -1,4 +1,14 @@
+from datetime import datetime
 import calendar
+
+
+class Day:
+    def __init__(self, number, past):
+        self.number = number
+        self.past = past
+
+    def __str__(self):
+        return str(self.number)
 
 
 class Calendar(calendar.Calendar):
@@ -27,7 +37,15 @@ class Calendar(calendar.Calendar):
         days = []
         for week in weeks:
             for day, _ in week:
-                days.append(day)
+                today = datetime.today()
+                date = today.day
+                month = today.month
+                past = False
+                if self.month <= month:
+                    if day < date:
+                        past = True
+                checked_day = Day(day, past)
+                days.append(checked_day)
         return days
 
     def get_month(self):
