@@ -1,8 +1,22 @@
+import datetime
 from django.db import models
 from django.utils import timezone
 from core import models as core_models
 
 # Create your models here.
+
+
+class BookedDay(core_models.TimeStampModel):
+
+    day = models.DateField()
+    reservation = models.ForeignKey("Reservation", on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Booked Day"
+        verbose_name_plural = "Booked Days"
+
+    def __str__(self):
+        return str(self.day)
 
 
 class Reservation(core_models.TimeStampModel):
@@ -45,3 +59,20 @@ class Reservation(core_models.TimeStampModel):
         return now > self.check_out
 
     is_finished.boolean = True
+
+    def save(self, *args, **kwargs):
+        if self.pk is None:  # This means that this object is new object!
+            end = self.check_out
+            start = self.check_in
+            difference = end - start
+            existing_booked_day = BookedDay.objects.filter(
+                day__range=(start, end)
+            ).exists()
+            if not existing_booked_day:
+                super().save(*args, **kwargs)
+                for i in range(difference.days):
+                    day = start + datetime.timedelta(days=i)
+                    BookedDay.objects.create(day=day, reservation=self)
+                return
+        return super().save(*args, **kwargs)
+
