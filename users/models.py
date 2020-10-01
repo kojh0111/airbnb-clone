@@ -19,8 +19,8 @@ class User(AbstractUser):
     GENDER_FEMALE = "female"
 
     GENDER_CHOICES = (
-        (GENDER_MALE, "male"),
-        (GENDER_FEMALE, "female"),
+        (GENDER_MALE, "Male"),
+        (GENDER_FEMALE, "Female"),
     )
 
     LANGUAGE_ENGLISH = "en"
